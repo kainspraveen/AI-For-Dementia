@@ -1,13 +1,5 @@
-import React, {
-  View,
-  Text,
-  SafeAreaView,
-  Animated,
-  Easing,
-} from "react-native";
-import LottieView from "lottie-react-native";
+import React, { View, Text, SafeAreaView, Easing } from "react-native";
 import { useEffect, useRef } from "react";
-import LocationTest from "@/components/Location";
 
 export default function Planning() {
   //   const animationProgress = useRef(new Animated.Value(0));
@@ -20,9 +12,5 @@ export default function Planning() {
   //     }).start();
   //   }, []);
 
-  return (
-    // <SafeAreaView>
-    <LocationTest></LocationTest>
-    // </SafeAreaView>
-  );
+  return <SafeAreaView></SafeAreaView>;
 }
