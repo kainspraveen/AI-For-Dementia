@@ -6,6 +6,10 @@ import * as Location from "expo-location";
 export default function LocationTest() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [patientLocation, setPatinetLocation] = useState({
+    latitude: null,
+    longitude: null,
+  });
 
   useEffect(() => {
     (async () => {
@@ -14,11 +18,20 @@ export default function LocationTest() {
         setErrorMsg("Permission to access location was denied");
         return;
       }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      console.log("fdefefs");
+      let location_ = await Location.getCurrentPositionAsync({});
+      // console.log(location_);
+      setLocation(location_);
+      setPatinetLocation({
+        latitude: location_?.coords?.latitude,
+        longitude: location_?.coords?.longitude,
+      });
     })();
   }, []);
+
+  // useEffect(() => {
+  //   console.log("----------", location);
+  // }, [location]);
 
   let text = "Waiting..";
   if (errorMsg) {
@@ -39,18 +52,13 @@ export default function LocationTest() {
     longitude: -82.457178,
   };
 
-  const patientLocation = {
-    latitude: location["coords"]["latitude"],
-    longitude: location["coords"]["longitude"],
-  };
-
   haversine1 = haversine(geoFence1, patientLocation);
   haversine2 = haversine(geoFence2, patientLocation);
 
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.paragraph}>{text}</Text> */}
-      {/* <Text>{JSON.stringify(patientLocation)}</Text> */}
+      <Text style={styles.paragraph}>{text}</Text>
+      <Text>{JSON.stringify(patientLocation)}</Text>
       <Text>
         {JSON.stringify(
           haversine(geoFence1, patientLocation, {
@@ -58,7 +66,7 @@ export default function LocationTest() {
           })
         )}
       </Text>
-      <Text>{haversine1}</Text>
+      {/* <Text>{JSON.stringify(location)}</Text> */}
     </View>
   );
 }

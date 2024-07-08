@@ -189,7 +189,7 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          <TouchableOpacity onPress={() => router.push("/planning")}>
+          <TouchableOpacity onPress={() => router.push("/stt")}>
             <View style={styles.planning}>
               <Text
                 style={{
