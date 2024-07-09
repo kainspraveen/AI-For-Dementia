@@ -1,55 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { Text, View, Button } from "react-native";
+import { useState, useEffect } from "react";
+import { View, StyleSheet, Button, Text } from "react-native";
 import { Audio } from "expo-av";
-import { Recording } from "expo-av/build/Audio";
 
 export default function Record() {
-  const [recording, setRecording] = useState(null);
-  const [transcription, setTranscription] = useState("");
-  const [sound, setSound] = useState(null);
+  const [recording, setRecording] = useState();
+  const [permissionResponse, requestPermission] = Audio.usePermissions();
   const [audioUri, setAudioUri] = useState(null);
+  const [sound, setSound] = useState(null);
 
-  const startRecording = async () => {
+  async function startRecording() {
     try {
-      const { status } = await Audio.requestPermissionsAsync();
-      if (status === "granted") {
-        await Audio.setAudioModeAsync({
-          allowsRecordingIOS: true,
-          playsInSilentModeIOS: true,
-        });
-
-        const recording = new Audio.Recording();
-        await recording.prepareToRecordAsync(
-          Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
-        );
-        await recording.startAsync();
-        setRecording(recording);
-        console.log("started recording...");
-      } else {
-        alert("Permission to access microphone is required!");
+      if (permissionResponse.status !== "granted") {
+        console.log("Requesting permission..");
+        await requestPermission();
       }
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: true,
+        playsInSilentModeIOS: true,
+      });
+
+      console.log("Starting recording..");
+      const { recording } = await Audio.Recording.createAsync(
+        Audio.RecordingOptionsPresets.HIGH_QUALITY
+      );
+      setRecording(recording);
+      console.log("Recording started");
     } catch (err) {
       console.error("Failed to start recording", err);
     }
-  };
+  }
 
-  const stopRecording = async () => {
-    try {
-      await recording.stopAndUnloadAsync();
-      const uri = recording.getURI();
-      console.log("Recording stopped and stored at", uri);
-      setAudioUri(uri);
-
-      // Implement uploading and streaming logic here
-      const audioBytes = await fetch(uri).then((res) => res.arrayBuffer());
-
-      transcribeAudio(audioBytes);
-
-      setRecording(null);
-    } catch (error) {
-      console.error("Failed to stop recording", error);
-    }
-  };
+  async function stopRecording() {
+    console.log("Stopping recording..");
+    setRecording(undefined);
+    await recording.stopAndUnloadAsync();
+    await Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+    });
+    const uri = recording.getURI();
+    console.log("Recording stopped and stored at", uri);
+    setAudioUri(uri);
+  }
 
   const playAudio = async () => {
     if (audioUri) {
@@ -69,21 +60,23 @@ export default function Record() {
       : undefined;
   }, [sound]);
 
-  const transcribeAudio = async (audioBytes) => {
-    // Implement your backend communication to stream audio bytes to Google Cloud
-  };
-
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>{transcription}</Text>
-      <Text>
-        {audioUri ? "Recording saved!" : "Press the button to start recording"}
-      </Text>
-      <Button title="Start Recording" onPress={startRecording} />
-      <Button title="Stop Recording" onPress={stopRecording} />
+    <View style={styles.container}>
+      <Button
+        title={recording ? "Stop Recording" : "Start Recording"}
+        onPress={recording ? stopRecording : startRecording}
+      />
       <Button title="Play Recording" onPress={playAudio} disabled={!audioUri} />
+      <Text>{JSON.stringify(recording)}</Text>
     </View>
   );
 }
 
-// export default Record;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+    padding: 10,
+  },
+});

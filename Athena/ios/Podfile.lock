@@ -8,6 +8,8 @@ PODS:
     - ExpoModulesCore
   - EXLocation (17.0.1):
     - ExpoModulesCore
+  - EXPermissions (14.4.0):
+    - ExpoModulesCore
   - Expo (51.0.17):
     - ExpoModulesCore
   - ExpoAsset (10.0.10):
@@ -1315,6 +1317,7 @@ DEPENDENCIES:
   - EXAV (from `../node_modules/expo-av/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - EXLocation (from `../node_modules/expo-location/ios`)
+  - EXPermissions (from `../node_modules/expo-permissions/ios`)
   - Expo (from `../node_modules/expo`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
@@ -1403,6 +1406,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-constants/ios"
   EXLocation:
     :path: "../node_modules/expo-location/ios"
+  EXPermissions:
+    :path: "../node_modules/expo-permissions/ios"
   Expo:
     :path: "../node_modules/expo"
   ExpoAsset:
@@ -1551,6 +1556,7 @@ SPEC CHECKSUMS:
   EXAV: a1e8d579f0cb4a60792d1686732117420c901b8b
   EXConstants: 409690fbfd5afea964e5e9d6c4eb2c2b59222c59
   EXLocation: 43e9b582ca63a23c6f0a18d8cbe2145b3a388b55
+  EXPermissions: 51c6115893689c3e9787f4819aa67ceeae601038
   Expo: 675a5642b5860771507237259da50b921c03a9f3
   ExpoAsset: 323700f291684f110fb55f0d4022a3362ea9f875
   ExpoFileSystem: 80bfe850b1f9922c16905822ecbf97acd711dc51
