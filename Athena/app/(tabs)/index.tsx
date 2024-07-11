@@ -66,7 +66,7 @@ export default function HomeScreen() {
             >
               <View
                 style={{
-                  backgroundColor: "#7b68ee",
+                  backgroundColor: "#00b0b9",
                   justifyContent: "center",
                   marginHorizontal: 20,
                   height: 200,
@@ -83,7 +83,7 @@ export default function HomeScreen() {
                   style={styles.taskCardIcon}
                   name="dinner-dining"
                   size={65}
-                  color="#f5f5dc"
+                  color="#c6007e"
                 />
 
                 <Text
@@ -102,13 +102,13 @@ export default function HomeScreen() {
                   style={styles.taskCardDone}
                   name="checkcircle"
                   size={90}
-                  color="#f5f5dc"
+                  color="#c6007e"
                 />
               </View>
               <View
                 style={{
                   // display: 'flex',
-                  backgroundColor: "rgb(236,236,250)",
+                  backgroundColor: "#00b0b9",
                   height: 200,
                   width: "95%",
                   borderRadius: 25,
@@ -125,7 +125,7 @@ export default function HomeScreen() {
                   style={styles.taskCardIcon}
                   name="dinner-dining"
                   size={65}
-                  color="#7b68ee"
+                  color="#c6007e"
                 />
 
                 <Text
@@ -144,7 +144,7 @@ export default function HomeScreen() {
                   style={styles.taskCardDone}
                   name="checkcircle"
                   size={90}
-                  color="#7b68ee"
+                  color="#c6007e"
                 />
               </View>
             </ScrollView>
@@ -170,10 +170,10 @@ export default function HomeScreen() {
             <Text
               style={{
                 fontSize: 17.5,
-                fontWeight: 300,
+                fontWeight: 400,
                 marginLeft: "5%",
                 padding: 0,
-                color: "rgba(80,81,135, 1)",
+                // color: "#4EADB7",
               }}
             >
               4 of 12 completed
@@ -183,7 +183,8 @@ export default function HomeScreen() {
                 value={60}
                 radius={50}
                 activeStrokeWidth={12}
-                activeStrokeColor={"#7b68ee"}
+                activeStrokeColor={"#c6007e"}
+                // inActiveStrokeColor={"#A2D9CE"}
                 progressValueColor={"black"}
               />
             </View>
@@ -256,7 +257,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   medication: {
     marginTop: 10,
-    backgroundColor: "rgb(236,236,250)",
+    backgroundColor: "#80d6e0",
     minHeight: 100,
     maxHeight: "auto",
     width: "95%",
@@ -266,7 +267,9 @@ const styles = StyleSheet.create({
 
   planning: {
     // marginTop: 10,
-    backgroundColor: "rgb(236,236,250)",
+    // backgroundColor: "#D0ECE7",
+    backgroundColor: "#80d6e0",
+
     minHeight: 100,
     maxHeight: "auto",
     width: "95%",
@@ -313,7 +316,7 @@ const styles = StyleSheet.create({
   taskCardDone: {
     paddingEnd: 25,
     marginVertical: 50,
-    opacity: 0.75,
+    // opacity: 0.75,
     position: "absolute",
     alignSelf: "flex-end",
   },

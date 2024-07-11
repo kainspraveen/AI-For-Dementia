@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as Speech from "expo-speech";
 
 export default function Record() {
   const [recording, setRecording] = useState();
@@ -15,6 +16,11 @@ export default function Record() {
   const [sound, setSound] = useState(null);
   const [base64String, setBase64String] = useState("");
   const [transcript, setTranscript] = useState("");
+
+  const speak = () => {
+    const thingToSay = "hello there!";
+    Speech.speak(thingToSay);
+  };
 
   // Function to read an audio file from assets
   const readAudioFile = async (assetUri) => {
@@ -144,14 +150,15 @@ export default function Record() {
   }
 
   const playAudio = async () => {
-    if (audioUri) {
-      const { sound } = await Audio.Sound.createAsync(
-        { uri: audioUri },
-        // { uri: require("@assets/audio/alisa-audio.m4a") },
-        { shouldPlay: true }
-      );
-      setSound(sound);
-    }
+    // if (audioUri) {
+    //   const { sound } = await Audio.Sound.createAsync(
+    //     { uri: audioUri },
+    //     // { uri: require("@assets/audio/alisa-audio.m4a") },
+    //     { shouldPlay: true }
+    //   );
+    //   setSound(sound);
+    // }
+    speak();
   };
 
   useEffect(() => {
@@ -161,6 +168,7 @@ export default function Record() {
         }
       : undefined;
   }, [sound]);
+  console.log(Speech.getAvailableVoicesAsync());
 
   return (
     <GestureHandlerRootView>
@@ -180,6 +188,7 @@ export default function Record() {
             {/* <Button title="Encode b64" onPress={displayB64}></Button> */}
             {/* <Text>Base 64 : {base64String}</Text> */}
             <Text>Transcript: {JSON.stringify(transcript)}</Text>
+            <Text>{JSON.stringify(Speech.getAvailableVoicesAsync())}</Text>
           </View>
         </ScrollView>
       </SafeAreaView>
