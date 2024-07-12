@@ -17,44 +17,86 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import EmergencyCall from "@/components/EmergencyCall";
-import TalkToMeIcon from "@/components/TalkToMeIcon";
-import HelpBottomBar from "@/components/HelpBottomBar";
+
+import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome6 } from "@expo/vector-icons";
 export default function HelpScreen() {
+  const handleWayHome = () => {
+    // Functionality for Button 2
+    console.log("Find my way home pressed");
+  };
+
+  const handleAskAnything = () => {
+    // Functionality for Button 2
+    console.log("Ask anything presed");
+  };
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      {/* <ScrollView
+    <SafeAreaView
+      style={{
+        flex: 1,
+      }}
+    >
+      <View
         style={{
-          flex: 1,
-        }}
-      > */}
-      <SafeAreaView
-        style={{
-          flex: 1,
+          // justifyContent: "center",
+          alignItems: "center",
         }}
       >
+        <Text style={styles.pageTitle}>Need help?</Text>
+        <View style={styles.emergencyCall}>
+          <EmergencyCall></EmergencyCall>
+        </View>
+
         <View
           style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
+            display: "flex",
+            marginHorizontal: "25%",
+            // paddingBottom: 30,
+            flexDirection: "row",
           }}
         >
-          <Text style={styles.pageTitle}>Need help?</Text>
-          <View style={styles.emergencyCall}>
-            <EmergencyCall></EmergencyCall>
-          </View>
+          <TouchableOpacity onPress={handleAskAnything}>
+            <View
+              style={{
+                display: "flex",
+                position: "relative",
+                width: "auto",
+                alignItems: "center",
+                paddingBottom: 30,
+                paddingRight: 100,
+              }}
+            >
+              <FontAwesome name="microphone" size={60} color="#003366" />
+              <Text style={{ paddingTop: 10, fontSize: 15, fontWeight: 600 }}>
+                {" "}
+                Ask anything
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleWayHome}>
+            <View
+              style={{
+                alignItems: "center",
+                paddingBottom: 30,
+              }}
+            >
+              <FontAwesome5 name="map-marked-alt" size={60} color="#003366" />
 
-          <HelpBottomBar></HelpBottomBar>
+              <Text style={{ paddingTop: 10, fontSize: 15, fontWeight: 600 }}>
+                Find my way home
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
-      </SafeAreaView>
-      {/* </ScrollView> */}
-    </GestureHandlerRootView>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   emergencyCall: {
-    marginBottom: 0,
+    // marginBottom: 0,
     margin: "auto",
   },
   pageTitle: {
@@ -63,15 +105,5 @@ const styles = StyleSheet.create({
     marginVertical: "7.5%",
     letterSpacing: 3,
     // margin: "auto",
-  },
-  headerImage: {
-    color: "#808080",
-    bottom: -90,
-    left: -35,
-    position: "absolute",
-  },
-  titleContainer: {
-    flexDirection: "row",
-    gap: 8,
   },
 });

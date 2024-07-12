@@ -1,6 +1,13 @@
 // App.js
 import React, { useEffect, useRef } from "react";
-import { StyleSheet, View, Animated, Easing, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Animated,
+  Easing,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { Feather } from "@expo/vector-icons";
 export default function EmergencyCall() {
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
@@ -40,46 +47,41 @@ export default function EmergencyCall() {
       ])
     ).start();
   }, [scaleAnim, opacityAnim]);
+  const handleButtonPress = () => {
+    // Functionality for Button 2
+    console.log("Emergency call pressed");
+  };
 
   return (
-    <View style={styles.container}>
-      <Animated.View
-        style={[
-          styles.circle,
-          { transform: [{ scale: scaleAnim }], opacity: opacityAnim },
-        ]}
-      />
-      <Animated.View style={[styles.circle, styles.innerCircle]}>
-        <View style={styles.icon}>
-          <Feather name="phone-call" size={110} color="#fff" />
-        </View>
-        {/* <Text
-          style={{
-            color: "#f5f5dc",
-            // position: "relative",
-            marginTop: 0,
-            fontSize: 20,
-            letterSpacing: 3,
-            fontWeight: 800,
-          }}
-        >
-          SOS
-        </Text> */}
-        <Text
-          style={{
-            // marginTop: 30,
-            bottom: 50,
-            position: "absolute",
-            fontSize: 20,
-            fontWeight: 700,
-            letterSpacing: 2,
-            color: "#fff",
-          }}
-        >
-          Emergency Call
-        </Text>
-      </Animated.View>
-    </View>
+    <TouchableOpacity onPress={handleButtonPress}>
+      <View style={styles.container}>
+        <Animated.View
+          style={[
+            styles.circle,
+            { transform: [{ scale: scaleAnim }], opacity: opacityAnim },
+          ]}
+        />
+        <Animated.View style={[styles.circle, styles.innerCircle]}>
+          <View style={styles.icon}>
+            <Feather name="phone-call" size={110} color="#fff" />
+          </View>
+
+          <Text
+            style={{
+              // marginTop: 30,
+              bottom: 50,
+              position: "absolute",
+              fontSize: 20,
+              fontWeight: 700,
+              letterSpacing: 2,
+              color: "#fff",
+            }}
+          >
+            Emergency Call
+          </Text>
+        </Animated.View>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -112,8 +114,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   icon: {
-    color: "#f5f5dc",
-    fontSize: 40,
+    // color: "#f5f5dc",
+    // fontSize: 40,
     // marginTop: 50,
   },
 });

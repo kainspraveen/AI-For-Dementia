@@ -32,225 +32,217 @@ export default function HomeScreen() {
   const router = useRouter();
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ScrollView nestedScrollEnabled={true} style={{ flex: 1 }}>
-        <SafeAreaView>
-          <Ionicons
-            style={styles.notificationsBell}
-            name="notifications-outline"
-            size={40}
-            color="black"
-          />
-          <Text style={styles.titleContainer}>Good morning, Joe</Text>
+    // <GestureHandlerRootView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }} edges={["right", "left", "top"]}>
+      <ScrollView
+        nestedScrollEnabled={true}
+        style={{ flex: 1 }}
+        contentInsetAdjustmentBehavior={"automatic"}
+      >
+        <Ionicons
+          style={styles.notificationsBell}
+          name="notifications"
+          size={40}
+          color="#c6007e"
+        />
+        <Text style={styles.titleContainer}>Good morning, Joe</Text>
 
+        <Text
+          style={{
+            fontSize: 25,
+            fontWeight: 500,
+            // padding: 10,
+            marginLeft: "5%",
+            marginVertical: 20,
+          }}
+        >
+          Next tasks
+        </Text>
+
+        <View style={{ height: 200, marginBottom: 10 }}>
+          <ScrollView horizontal={true} nestedScrollEnabled={true}>
+            <View
+              style={{
+                backgroundColor: "#00b0b9",
+                justifyContent: "center",
+                marginHorizontal: 20,
+                height: 200,
+                width: "95%",
+                borderRadius: 25,
+              }}
+            >
+              {/* <LinearGradient colors={["rgba(0,0,0,0.8)", "transparent"]} /> */}
+              <MaterialIcons
+                style={styles.taskCardIcon}
+                name="dinner-dining"
+                size={65}
+                color="#E6E6FA"
+              />
+
+              <Text
+                style={{
+                  // margin: 'auto',
+                  marginLeft: "5%",
+                  marginVertical: "auto",
+                  fontSize: 20,
+                  fontWeight: 600,
+                  color: "#fff",
+                }}
+              >
+                12:30 - Have Lunch
+              </Text>
+              <AntDesign
+                style={styles.taskCardDone}
+                name="checkcircle"
+                size={90}
+                color="#E6E6FA"
+              />
+            </View>
+            <View
+              style={{
+                // display: 'flex',
+                backgroundColor: "#00b0b9",
+                height: 200,
+                width: "95%",
+                borderRadius: 25,
+                justifyContent: "center",
+                // margin: 'auto'
+              }}
+            >
+              <LinearGradient
+                // Background Linear Gradient
+                colors={["rgba(0,0,0,0.8)", "transparent"]}
+                // style={styles.background}
+              />
+              <MaterialIcons
+                style={styles.taskCardIcon}
+                name="dinner-dining"
+                size={65}
+                color="#E6E6FA"
+              />
+
+              <Text
+                style={{
+                  // margin: 'auto',
+                  marginLeft: "5%",
+                  marginVertical: "auto",
+                  fontSize: 20,
+                  fontWeight: 600,
+                  color: "black",
+                }}
+              >
+                12:30 - Have Lunch
+              </Text>
+              <AntDesign
+                style={styles.taskCardDone}
+                name="checkcircle"
+                size={90}
+                color="#E6E6FA"
+              />
+            </View>
+          </ScrollView>
+        </View>
+
+        <View style={styles.dailyProgress}>
           <Text
             style={{
+              lineHeight: 30,
+              marginLeft: "2.5%",
+              height: 100,
+              width: 150,
               fontSize: 25,
               fontWeight: 500,
-              // padding: 10,
-              marginLeft: "5%",
+              padding: 10,
               marginVertical: 20,
+              color: "black",
             }}
           >
-            Next tasks
+            Today's Progress
           </Text>
-
-          <View style={{ height: 200, marginBottom: 10 }}>
-            <ScrollView
-              horizontal={true}
-              // pagingEnabled = {true}
-              // nestedScrollEnabled= {true}
-              // style = {{flex: 1}}
-              // contentContainerStyle = {{paddingVertical: 5, flexDirection: 'row'}}
-              // pagingEnabled = {true}
-            >
-              <View
-                style={{
-                  backgroundColor: "#00b0b9",
-                  justifyContent: "center",
-                  marginHorizontal: 20,
-                  height: 200,
-                  width: "95%",
-                  borderRadius: 25,
-                }}
-              >
-                <LinearGradient
-                  // Background Linear Gradient
-                  colors={["rgba(0,0,0,0.8)", "transparent"]}
-                  // style={styles.background}
-                />
-                <MaterialIcons
-                  style={styles.taskCardIcon}
-                  name="dinner-dining"
-                  size={65}
-                  color="#c6007e"
-                />
-
-                <Text
-                  style={{
-                    // margin: 'auto',
-                    marginLeft: "5%",
-                    marginVertical: "auto",
-                    fontSize: 20,
-                    fontWeight: 600,
-                    color: "#f5f5dc",
-                  }}
-                >
-                  12:30 - Have Lunch
-                </Text>
-                <AntDesign
-                  style={styles.taskCardDone}
-                  name="checkcircle"
-                  size={90}
-                  color="#c6007e"
-                />
-              </View>
-              <View
-                style={{
-                  // display: 'flex',
-                  backgroundColor: "#00b0b9",
-                  height: 200,
-                  width: "95%",
-                  borderRadius: 25,
-                  justifyContent: "center",
-                  // margin: 'auto'
-                }}
-              >
-                <LinearGradient
-                  // Background Linear Gradient
-                  colors={["rgba(0,0,0,0.8)", "transparent"]}
-                  // style={styles.background}
-                />
-                <MaterialIcons
-                  style={styles.taskCardIcon}
-                  name="dinner-dining"
-                  size={65}
-                  color="#c6007e"
-                />
-
-                <Text
-                  style={{
-                    // margin: 'auto',
-                    marginLeft: "5%",
-                    marginVertical: "auto",
-                    fontSize: 20,
-                    fontWeight: 600,
-                    color: "black",
-                  }}
-                >
-                  12:30 - Have Lunch
-                </Text>
-                <AntDesign
-                  style={styles.taskCardDone}
-                  name="checkcircle"
-                  size={90}
-                  color="#c6007e"
-                />
-              </View>
-            </ScrollView>
+          <Text
+            style={{
+              fontSize: 17.5,
+              fontWeight: 400,
+              marginLeft: "5%",
+              padding: 0,
+              // color: "#4EADB7",
+            }}
+          >
+            4 of 12 completed
+          </Text>
+          <View style={styles.circularProgress}>
+            <CircularProgress
+              value={60}
+              radius={50}
+              activeStrokeWidth={12}
+              activeStrokeColor={"#c6007e"}
+              // inActiveStrokeColor={"#A2D9CE"}
+              progressValueColor={"black"}
+            />
           </View>
+        </View>
 
-          <View style={styles.dailyProgress}>
-            {/* <Redirect href={'/planning'}></Redirect> */}
+        <TouchableOpacity onPress={() => router.push("/stt")}>
+          <View style={styles.planning}>
             <Text
               style={{
-                lineHeight: 30,
-                marginLeft: "2.5%",
-                height: 100,
-                width: 150,
-                fontSize: 25,
-                fontWeight: 500,
-                padding: 10,
-                marginVertical: 20,
+                // margin: 'auto',
+                marginLeft: "5%",
+                marginVertical: "5%",
+                fontSize: 17.5,
+                fontWeight: 600,
                 color: "black",
               }}
             >
-              Today's Progress
+              Planning
             </Text>
             <Text
               style={{
-                fontSize: 17.5,
+                // margin: 'auto',
+                marginLeft: "15%",
+                // marginVertical: 'auto',
+                fontSize: 15,
                 fontWeight: 400,
-                marginLeft: "5%",
-                padding: 0,
-                // color: "#4EADB7",
+                color: "black",
               }}
             >
-              4 of 12 completed
+              Doctor, Activities, Social
             </Text>
-            <View style={styles.circularProgress}>
-              <CircularProgress
-                value={60}
-                radius={50}
-                activeStrokeWidth={12}
-                activeStrokeColor={"#c6007e"}
-                // inActiveStrokeColor={"#A2D9CE"}
-                progressValueColor={"black"}
-              />
-            </View>
           </View>
+        </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => router.push("/stt")}>
-            <View style={styles.planning}>
-              <Text
-                style={{
-                  // margin: 'auto',
-                  marginLeft: "5%",
-                  marginVertical: "5%",
-                  fontSize: 17.5,
-                  fontWeight: 600,
-                  color: "black",
-                }}
-              >
-                Planning
-              </Text>
-              <Text
-                style={{
-                  // margin: 'auto',
-                  marginLeft: "15%",
-                  // marginVertical: 'auto',
-                  fontSize: 15,
-                  fontWeight: 400,
-                  color: "black",
-                }}
-              >
-                Doctor, Activities, Social
-              </Text>
-            </View>
-          </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/planning")}>
+          <View style={styles.medication}>
+            <Text
+              style={{
+                // margin: 'auto',
+                marginLeft: "5%",
+                marginVertical: "auto",
+                fontSize: 17.5,
+                fontWeight: 600,
+                color: "black",
+              }}
+            >
+              Medication
+            </Text>
 
-          <TouchableOpacity onPress={() => router.push("/planning")}>
-            <View style={styles.medication}>
-              <Text
-                style={{
-                  // margin: 'auto',
-                  marginLeft: "5%",
-                  marginVertical: "auto",
-                  fontSize: 17.5,
-                  fontWeight: 600,
-                  color: "black",
-                }}
-              >
-                Medication
-              </Text>
-
-              <Text
-                style={{
-                  // margin: 'auto',
-                  marginLeft: "15%",
-                  marginVertical: "auto",
-                  fontSize: 15,
-                  fontWeight: 400,
-                  color: "black",
-                }}
-              >
-                1:30 PM - Dopenzil - After Lunch
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </SafeAreaView>
+            <Text
+              style={{
+                // margin: 'auto',
+                marginLeft: "15%",
+                marginVertical: "auto",
+                fontSize: 15,
+                fontWeight: 400,
+                color: "black",
+              }}
+            >
+              1:30 PM - Dopenzil - After Lunch
+            </Text>
+          </View>
+        </TouchableOpacity>
       </ScrollView>
-    </GestureHandlerRootView>
+    </SafeAreaView>
+    // </GestureHandlerRootView>
   );
 }
 
