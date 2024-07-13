@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { View, StyleSheet, Button, Text } from "react-native";
 import { Audio } from "expo-av";
 import * as FileSystem from "expo-file-system";
@@ -8,7 +8,7 @@ import {
 } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Speech from "expo-speech";
-
+import { Stack, useNavigation } from "expo-router";
 export default function Record() {
   const [recording, setRecording] = useState();
   const [permissionResponse, requestPermission] = Audio.usePermissions();
@@ -17,8 +17,17 @@ export default function Record() {
   const [base64String, setBase64String] = useState("");
   const [transcript, setTranscript] = useState("");
 
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "", // Remove the header title
+      headerBackTitleVisible: false, // Optional: Remove the back button title
+    });
+  }, [navigation]);
+
   const speak = () => {
-    const thingToSay = "hello there!";
+    const thingToSay = "hello there, how are you doing!";
     Speech.speak(thingToSay);
   };
 
@@ -172,6 +181,7 @@ export default function Record() {
 
   return (
     <GestureHandlerRootView>
+      {/* <Stack.Screen name="stt/index" options={{ headerShown: false }} /> */}
       <SafeAreaView>
         <ScrollView>
           <View style={styles.container}>

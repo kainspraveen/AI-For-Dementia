@@ -1,9 +1,9 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { TabBarIcon } from "@/components/navigation/TabBarIcon";
+import { Colors } from "@/constants/Colors";
+import { useColorScheme } from "@/hooks/useColorScheme";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -11,33 +11,43 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: "Home",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? "home" : "home-outline"}
+              color={color}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="routine"
         options={{
-          title: 'Routine',
+          title: "Routine",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'clipboard' : 'clipboard-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? "clipboard" : "clipboard-outline"}
+              color={color}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="help"
         options={{
-          title: 'Help',
+          title: "Help",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'help-buoy' : 'help-buoy-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? "help-buoy" : "help-buoy-outline"}
+              color={color}
+            />
           ),
         }}
       />

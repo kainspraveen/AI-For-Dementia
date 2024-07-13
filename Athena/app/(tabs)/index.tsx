@@ -27,6 +27,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 // } from 'react-native-svg';
 // import ProgressChart from '@/components/ProgressChart';
 import CircularProgress from "react-native-circular-progress-indicator";
+import MoodBar from "@/components/MoodBar";
 // import { rgbaColor } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 export default function HomeScreen() {
   const router = useRouter();
@@ -59,7 +60,7 @@ export default function HomeScreen() {
           Next tasks
         </Text>
 
-        <View style={{ height: 200, marginBottom: 10 }}>
+        <View style={{ height: 200, marginBottom: 0 }}>
           <ScrollView horizontal={true} nestedScrollEnabled={true}>
             <View
               style={{
@@ -181,36 +182,7 @@ export default function HomeScreen() {
             />
           </View>
         </View>
-
-        <TouchableOpacity onPress={() => router.push("/stt")}>
-          <View style={styles.planning}>
-            <Text
-              style={{
-                // margin: 'auto',
-                marginLeft: "5%",
-                marginVertical: "5%",
-                fontSize: 17.5,
-                fontWeight: 600,
-                color: "black",
-              }}
-            >
-              Planning
-            </Text>
-            <Text
-              style={{
-                // margin: 'auto',
-                marginLeft: "15%",
-                // marginVertical: 'auto',
-                fontSize: 15,
-                fontWeight: 400,
-                color: "black",
-              }}
-            >
-              Doctor, Activities, Social
-            </Text>
-          </View>
-        </TouchableOpacity>
-
+        <MoodBar></MoodBar>
         <TouchableOpacity onPress={() => router.push("/planning")}>
           <View style={styles.medication}>
             <Text
@@ -257,18 +229,6 @@ const styles = StyleSheet.create({
     margin: "auto",
   },
 
-  planning: {
-    // marginTop: 10,
-    // backgroundColor: "#D0ECE7",
-    backgroundColor: "#80d6e0",
-
-    minHeight: 100,
-    maxHeight: "auto",
-    width: "95%",
-    borderRadius: 25,
-    margin: "auto",
-  },
-
   circularProgress: {
     display: "flex",
     alignSelf: "flex-end",
@@ -279,11 +239,12 @@ const styles = StyleSheet.create({
   },
 
   dailyProgress: {
-    marginTop: 10,
+    marginBottom: 20,
     // backgroundColor: "#7b68ee",
-    height: 200,
+    height: "auto",
     width: "95%",
     // borderRadius: 25,
+    verticalAlign: "middle",
     margin: "auto",
   },
 
@@ -324,26 +285,5 @@ const styles = StyleSheet.create({
     // bottom: '-130%'
     // backgroundColor: '#0a7ea4'
     // gap: 8,
-  },
-  appLogo: {
-    margin: "auto",
-    height: 110,
-    width: 110,
-    marginVertical: "2.5%",
-
-    alignItems: "center",
-    // fontSize: '30px'
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: "100%",
-    bottom: 0,
-    left: 0,
-    position: "relative",
-    backgroundColor: "black",
   },
 });
