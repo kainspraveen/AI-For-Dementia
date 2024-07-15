@@ -176,7 +176,7 @@ export default function HomeScreen() {
               value={60}
               radius={50}
               activeStrokeWidth={12}
-              activeStrokeColor={"#c6007e"}
+              activeStrokeColor={"#53d769"}
               // inActiveStrokeColor={"#A2D9CE"}
               progressValueColor={"black"}
             />

@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 320,
     height: 320,
-    // backgroundColor: "rgba(0, 121, 107, 0.5)", // Lighter turquoise
-    backgroundColor: "#80d6e0",
+    backgroundColor: "rgba(211, 53, 66, 0.5)", // Lighter turquoise
+    // backgroundColor: "#80d6e0",
     borderRadius: 200,
     justifyContent: "center",
     alignItems: "center",
@@ -105,7 +105,8 @@ const styles = StyleSheet.create({
   innerCircle: {
     width: 300,
     height: 300,
-    backgroundColor: "#00b0b9", // Turquoise background for the circle
+    // backgroundColor: "#00b0b9", // Turquoise background for the circle
+    backgroundColor: "##C70039",
     borderRadius: 200,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
