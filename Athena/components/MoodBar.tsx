@@ -36,7 +36,10 @@ const DottedGridBackground = () => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.logMood}>
+      <TouchableOpacity
+        style={styles.logMood}
+        onPress={() => router.push("/mood")}
+      >
         <View>
           <Image
             source={require("@/assets/images/mindfulness.png")}

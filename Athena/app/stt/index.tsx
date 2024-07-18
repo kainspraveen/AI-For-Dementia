@@ -265,13 +265,17 @@ export default function Record() {
               {/* <FontAwesome name="microphone" size={60} color="black" /> */}
 
               {/* FCB07E */}
-              {/* <Text
-              style={{
-                padding: 10,
-              }}
-            >
-              Talk to Medha
-            </Text> */}
+              <Text
+                style={{
+                  padding: 10,
+                  fontSize: 35,
+                  fontWeight: 500,
+                  margin: "auto",
+                  paddingBottom: 50,
+                }}
+              >
+                Talk to Medha
+              </Text>
             </View>
           </Animated.View>
         </TouchableOpacity>

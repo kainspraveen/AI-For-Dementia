@@ -15,11 +15,17 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const user = 1;
+  const userType = { 1: "(tabs)", 2: "caregiver" };
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
-
+  // useEffect(() => {
+  //   // Fetch or determine user type here
+  //   // For example, from an authentication service or context
+  //   userType;
+  // }, [userType]);
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
