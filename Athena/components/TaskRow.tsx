@@ -4,7 +4,8 @@ import Svg, { Circle } from "react-native-svg";
 import { MaterialIcons } from "@expo/vector-icons";
 // const { width, height } = Dimensions.get("window");
 import { AntDesign } from "@expo/vector-icons";
-const DottedGridBackground = () => {
+const TaskRow = (data) => {
+  console.log(data);
   return (
     <View style={styles.taskRow}>
       <View>
@@ -14,7 +15,8 @@ const DottedGridBackground = () => {
             paddingLeft: 20,
           }}
         >
-          1:30 PM
+          {/* 1:30 PM */}
+          {data.data.time}
         </Text>
       </View>
       <View style={styles.routineCard}>
@@ -30,7 +32,7 @@ const DottedGridBackground = () => {
             // textAlignVertical: "middle",
           }}
         >
-          Meet Niece
+          {data.data.task}
         </Text>
         <View style={styles.doneIcon}>
           <AntDesign name="checkcircleo" size={24} color="black" />
@@ -75,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DottedGridBackground;
+export default TaskRow;

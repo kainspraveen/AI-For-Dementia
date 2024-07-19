@@ -69,7 +69,6 @@ export default function HelpScreen() {
             >
               <FontAwesome name="microphone" size={60} color="#003366" />
               <Text style={{ paddingTop: 10, fontSize: 15, fontWeight: 600 }}>
-                {" "}
                 Ask anything
               </Text>
             </View>

@@ -38,23 +38,24 @@
     <true/>
     <key>NSAppTransportSecurity</key>
     <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
-      <key>NSAllowsLocalNetworking</key>
-      <true/>
       <key>NSExceptionDomains</key>
       <dict>
-        <key>58.84.62.117</key>
+        <key>35.195.190.151</key>
         <dict>
+          <!--Include to allow subdomains-->
           <key>NSIncludesSubdomains</key>
           <true/>
+          <!--Include to allow HTTP requests-->
           <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
           <true/>
+          <!--Include to specify minimum TLS version-->
           <key>NSTemporaryExceptionMinimumTLSVersion</key>
-          <string>TLSv1.0</string>
+          <string>TLSv1.1</string>
         </dict>
       </dict>
     </dict>
+    <key>NSFaceIDUsageDescription</key>
+    <string>Allow $(PRODUCT_NAME) to access your Face ID biometric data.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
     <string>Allow $(PRODUCT_NAME) to access your location</string>
     <key>NSLocationAlwaysUsageDescription</key>
@@ -65,8 +66,6 @@
     <string>Allow $(PRODUCT_NAME) to access your microphone.</string>
     <key>NSUserActivityTypes</key>
     <array>
-      <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
-      <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
     </array>

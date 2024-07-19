@@ -17,12 +17,23 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Stack, useNavigation } from "expo-router";
+import React, { useLayoutEffect } from "react";
+import Alert from "@/components/Alert";
 export default function Routine() {
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "", // Remove the header title
+      headerBackTitleVisible: false, // Optional: Remove the back button title
+    });
+  }, [navigation]);
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "#F5F5DC",
+        // backgroundColor: "#fff",
       }}
       // edges={["right", "left", "top"]}
     >
@@ -36,7 +47,21 @@ export default function Routine() {
         }}
         contentInsetAdjustmentBehavior={"automatic"}
       >
-        <Text> Alerts View for Caregiver</Text>
+        <Text
+          style={{
+            fontSize: 25,
+            fontWeight: 500,
+            padding: 20,
+            margin: "auto",
+          }}
+        >
+          {/* {" "} */}
+          Alerts View for Caregiver
+        </Text>
+
+        <Alert></Alert>
+        <Alert></Alert>
+        <Alert></Alert>
       </ScrollView>
     </SafeAreaView>
   );

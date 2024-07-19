@@ -25,6 +25,7 @@ export default function Record() {
   const [transcript, setTranscript] = useState("");
   const [speed, setSpeed] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
+  const [ttmResponse_, setTtmResponse_] = useState("");
 
   const navigation = useNavigation();
   const animationRef = useRef<LottieView>(null);
@@ -44,8 +45,14 @@ export default function Record() {
   }, [navigation]);
 
   const speak = () => {
-    const thingToSay = "hello there, how are you doing!";
-    Speech.speak(thingToSay);
+    console.log("%%");
+    const thingToSay = "You put your remote on the Top Shelf today Morning";
+    // if (!thingToSay) {
+    //   const thingToSay = transcript;
+    // }
+    console.log("%%");
+    console.log(ttmResponse_);
+    Speech.speak(thingToSay, { volume: 1.0 });
   };
 
   // Function to read an audio file from assets
@@ -73,9 +80,24 @@ export default function Record() {
       throw error;
     }
   };
+  async function getIntent() {
+    if (transcript.includes("find")) {
+      if (transcript.includes("remote")) {
+        setTtmResponse_("Your put your remote on the Top Shelf!");
+      } else if (transcript.includes("keys")) {
+        setTtmResponse_("You put your keys on the Tv Drawer.");
+      }
+    } else if (transcript.includes("talk")) {
+      setTtmResponse_("Hi Joe, what do you want to talk about");
+    } else if (transcript.includes("remember")) {
+      setTtmResponse_("Ok Done!");
+    }
+    console.log(ttmResponse_);
+  }
+  // }
 
   // const url = "https://speech.googleapis.com/v1/speech:recognize";
-  // async function audioTranscription() {
+  // async function talkToMe() {
   //   const requestBody = {
   //     config: {
   //       encoding: "LINEAR16",
@@ -93,33 +115,107 @@ export default function Record() {
   //       "Content-Type": "application/json",
   //       "x-goog-user-project": "dementia-428310",
   //       Authorization:
-  //         "Bearer ya29.a0AXooCgtThmn2Yl1PL4aCXv1K21pIU2HPG-NdnCtRAuGyhEyfruZR3uGgnddmLORhX8o00J8FEvqMMQpvl3vMLZwm0qsWNqGGoXG1sQ5oDzHwUNGD_PJ0xXXHJpLACDgIeTH5Gt9VDTo85pz8BYUhRn_OwHGsnL_Kd32X_C_tUQaCgYKATQSARASFQHGX2MilglqgSPdPKtkIVSCJgTbfA0177",
+  //         "Bearer ya29.a0AXooCguttkdPNFe70sbtVY-MO9IKvdbNooiCu_h1f78ys1nygLYD4Ou_CkcLsoYFmTTAN0Mxv3p3AXafO4R9Tn82ogBGThuussZ2ihHyS0ERuwR1TeRrQKQztsKuR8je102nNxjiI1b4tD9056SCu1KeXmFA2h0-3AeLGElLTgaCgYKAToSARASFQHGX2MiKSbFwANAREHFLAMBPIIIwA0177",
   //     },
   //     body: JSON.stringify(requestBody),
   //   });
+  //   console.log("test1");
   //   const transcription = await response.json();
+  //   console.log(response);
+  //   console.log(response.text());
+  //   console.log("test2");
   //   setTranscript(transcription);
+  //   speak();
   // }
 
-  const url = "http://58.84.62.117:5000/talktome";
   async function talkToMe() {
-    console.log("inside talk to me");
-    const requestBody = {
-      query: base64String,
-    };
-    console.log("test 0");
-    const ttmResponse = await fetch(url, {
-      method: "POST",
-      headers: {
-        "content-type": "applicatin/json",
+    const myHeaders = new Headers();
+    myHeaders.append("x-goog-user-project", "dementia-428310");
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      "Bearer ya29.a0AXooCgv2eI-QSEyi3ykOXlmkUcUsw4SORlhH0dxv_6-OyZhwlFN6XzTGtsCSgqg6hApz94LYPw_4gQ3Xsg8-xbZJ1lDjVwXq02JLisglEBLnvaNosZq85ylFuZGlK9I_981FxnHXZsUrbuWoBLSiQn3YjFwMZq_y1Kem51czMAaCgYKAXkSARASFQHGX2MiLPrY7Q4cqxff_tbJ_g0e8A0177"
+    );
+
+    const raw = JSON.stringify({
+      config: {
+        encoding: "LINEAR16",
+        sampleRateHertz: 48000,
+        audioChannelCount: 2,
+        languageCode: "en-US",
       },
-      body: JSON.stringify(requestBody),
+      audio: {
+        content: base64String,
+      },
     });
-    console.log("test1");
-    console.log(ttmResponse.json());
-    console.log(ttmResponse);
-    setTranscript(ttmResponse);
-    console.log("test 2");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("https://speech.googleapis.com/v1/speech:recognize", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        setTranscript(JSON.stringify(result));
+        console.log("u ");
+        console.log(transcript);
+        console.log(" f");
+        talkToMe2();
+      })
+      .catch((error) => console.error(error));
+  }
+
+  // const url = "http://35.195.190.151:80/talktome";
+  // async function talkToMe2() {
+  //   console.log("inside talk to me");
+  //   const requestBody = {
+  //     query: transcript,
+  //     user_id: 1,
+  //   };
+  //   console.log("test 0");
+  //   const ttmResponse = await fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "applicatin/json",
+  //     },
+  //     body: JSON.stringify(requestBody),
+  //   });
+  //   console.log("test1");
+  //   console.log(ttmResponse.json());
+  //   console.log(ttmResponse);
+  //   setTtmResponse_(ttmResponse);
+  //   console.log("test 2");
+  //   speak();
+  // }
+
+  async function talkToMe2() {
+    getIntent();
+    // talkToMe3();
+  }
+  async function talkToMe3() {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    // const raw = JSON.stringify({
+    //   query: base64String,
+    //   user_id: 1,
+    // });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: ttmResponse_,
+      redirect: "follow",
+    };
+
+    fetch("http://35.195.190.151:80/talktome", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
   }
 
   const recordingOptions = {
@@ -201,6 +297,7 @@ export default function Record() {
 
     // await audioTranscription();
     await talkToMe();
+    await playAudio();
   }
 
   const playAudio = async () => {
@@ -212,7 +309,8 @@ export default function Record() {
     //   );
     //   setSound(sound);
     // }
-    speak();
+    await speak();
+    console.log(ttmResponse_);
   };
   useEffect(() => {
     if (isRecording) {

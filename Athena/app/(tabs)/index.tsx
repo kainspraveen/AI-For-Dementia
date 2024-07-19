@@ -21,6 +21,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import React, { useContext } from "react";
 // import Svg, {
 //   Use,
 //   // Image,
@@ -28,9 +29,13 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 // import ProgressChart from '@/components/ProgressChart';
 import CircularProgress from "react-native-circular-progress-indicator";
 import MoodBar from "@/components/MoodBar";
+import { UserContext } from "@/components/UserContext";
+
 // import { rgbaColor } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 export default function HomeScreen() {
   const router = useRouter();
+  const { userID } = useContext(UserContext);
+  console.log(userID);
 
   return (
     // <GestureHandlerRootView style={{ flex: 1 }}>
@@ -46,7 +51,7 @@ export default function HomeScreen() {
           size={40}
           color="#c6007e"
         />
-        <Text style={styles.titleContainer}>Good morning, Joe</Text>
+        <Text style={styles.titleContainer}>Good morning, {userID}</Text>
 
         <Text
           style={{

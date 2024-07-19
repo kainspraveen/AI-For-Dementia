@@ -1,5 +1,5 @@
 // App.js
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -9,9 +9,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { Linking, Platform } from "react-native";
+
 export default function EmergencyCall() {
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
+  // const [emergencyContact, setEmergencyContact] = useState();
 
   useEffect(() => {
     Animated.loop(
@@ -47,13 +50,27 @@ export default function EmergencyCall() {
       ])
     ).start();
   }, [scaleAnim, opacityAnim]);
+  // setEmergencyContact(1234);
   const handleButtonPress = () => {
     // Functionality for Button 2
     console.log("Emergency call pressed");
   };
+  const emergencyContact = 7875939333;
+
+  const onCallMobilePhone = async () => {
+    if (Platform.OS === "android") {
+      Linking.openURL(`tel:${emergencyContact}`);
+      return;
+    }
+
+    if (Platform.OS === "ios") {
+      Linking.openURL(`telprompt:${emergencyContact}`);
+      return;
+    }
+  };
 
   return (
-    <TouchableOpacity onPress={handleButtonPress}>
+    <TouchableOpacity onPress={onCallMobilePhone}>
       <View style={styles.container}>
         <Animated.View
           style={[
